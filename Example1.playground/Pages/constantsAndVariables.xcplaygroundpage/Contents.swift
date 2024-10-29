@@ -1,7 +1,19 @@
-//: [Previous](@previous)
+//declearing constants and variables
 
-import Foundation
+//you declear constants using let- this means thy can not be changed in the future
+let maximumNumberOfLoginAttempts: Int
 
-var greeting = "Hello, playground"
+//you declear variables with var- this means you can change the variable in future
+var currentLoginAttempt = 0
 
-//: [Next](@next)
+var environment = "development"
+
+//using conditionals if statement
+
+if environment == "development"{
+    maximumNumberOfLoginAttempts = 100
+    print(maximumNumberOfLoginAttempts)
+}else{
+    maximumNumberOfLoginAttempts = 10
+    print(maximumNumberOfLoginAttempts)
+}
