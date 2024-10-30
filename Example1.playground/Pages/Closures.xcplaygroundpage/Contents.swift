@@ -1,5 +1,5 @@
 import Foundation
-// CLOSURE IS UN NAMED block of code which you can assingh to a variable or you can pass an agument
+// CLOSURE IS UN NAMED block of code which you can assingh to a variable or you can pass an agument they can be used after the function has run
 
 //let closure = (()->())
 //Basic Syntax for closure()
