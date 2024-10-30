@@ -59,7 +59,4 @@ myCar.displayDetails()  // Output: Car Details: 2020 Toyota Camry with 15100.0 m
 let myElectricCar = ElectricCar(make: "Tesla", model: "Model 3", year: 2021, mileage: 5000, batteryLevel: 100.0)
 myElectricCar.displayDetails()  // Output: Car Details: 2021 Tesla Model 3 with 5000.0 miles
 myElectricCar.drive(miles: 50)   // Output: Driving 50 miles... Battery level: 90.0
-myElectricCar.drive(miles: 500)  // Output: Driving 500 miles... Battery level: 50.0
-myElectricCar.drive(miles: 300)  // Output: Driving 300 miles... Battery level: 30.0
-myElectricCar.drive(miles: 200)  // Output: Driving 200 miles... Battery level: 10.0
-myElectricCar.drive(miles: 100)  // Output: Driving 100 miles... Battery is empty! Please recharge.
+
