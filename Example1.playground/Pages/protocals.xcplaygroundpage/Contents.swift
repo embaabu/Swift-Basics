@@ -36,15 +36,17 @@ struct Airbus: Jet{
 }
 
 let bmw = BMW()
-//bmw.start()
-//bmw.drive()
+bmw.start()
+bmw.drive()
 
 let airbus = Airbus()
-//airbus.start()
-//airbus.fly()
+airbus.start()
+airbus.fly()
 
 
 //PROTOCAL COMPOSITION
+
+/*Protocol composition allows a type to conform to multiple protocols simultaneously without creating an entirely new protocol.*/
 
 
 protocol Drivable {
@@ -56,7 +58,9 @@ protocol Flyable {
 }
 
 // Function that takes a type conforming to both Drivable and Flyable
-func travel(vehicle: Drivable & Flyable) {
+typealias Movable = Drivable & Flyable
+
+func travel(vehicle: Movable ) {
     vehicle.drive()
     vehicle.fly()
 }

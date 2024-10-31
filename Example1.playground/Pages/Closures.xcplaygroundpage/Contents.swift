@@ -11,11 +11,11 @@ let reversedNames1 = names.sorted(by: {(s1:String, s2:String) -> Bool in return 
 //print(reversedNames1)
 
 //inferring types from context
-let reversedNames2 = names.sorted(by: {s1,s2 in return s1 > s2})
+//let reversedNames2 = names.sorted(by: {s1,s2 in return s1 > s2})
 //print(reversedNames2)
 
 //implicit returns from single expression closures
-let reversedNames3 = names.sorted(by: {s1,s2 in s1 > s2})
+//let reversedNames3 = names.sorted(by: {s1,s2 in s1 > s2})
 
 //print(reversedNames3)
 
@@ -60,8 +60,8 @@ let strings = numbers.map{(number) -> String in
 /*
  Sometimes, a closure needs to escape the scope of the function it was passed into. This typically happens when the closure is stored and executed later, like in an asynchronous task.
  */
-
-func executeAsynchronously(completion: @escaping @Sendable() -> Void){
+@MainActor
+func executeAsynchronously(completion: @escaping () -> Void){
     print("start of the function")
     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
         print("Executing asynchronously...")
@@ -84,7 +84,13 @@ func printNumber(_ number: @autoclosure () -> Int){
 }
 printNumber(5)
 
-
+func birthdayWish(message: String, wishThem:()->Void){
+    let message = "Happy Birthday!"
+    wishThem()
+}
+birthdayWish(message: "Happy Birthday!") {
+    print("this is your wish")
+}
 
 
 
