@@ -3,7 +3,7 @@
 import Foundation
 
 var greeting = "Hello, playground"
-print(greeting)
+//print(greeting)
 
 
 
@@ -23,9 +23,9 @@ func checkPassword(_ password: String) throws -> String{
     if password == "1234" {
         throw PasswordError.obvious
     }
-    if password.count < 8 {
+    if password.count >= 5 && password.count <= 8 {
         return "Pasword is ok"
-    }else if password.count < 10{
+    }else if password.count >= 9 && password.count <= 10{
         return "password is good"
     }else{
         return "Excellent"
@@ -33,17 +33,20 @@ func checkPassword(_ password: String) throws -> String{
     
 }
 
-let password = "1234567"
+let password = "qwer"
 
 do{
     let result = try checkPassword(password)
     print("Password rating: \(result)")
     
-}catch PasswordError.short{
-    print("The password is too short please use a longer password")
-    
-}catch PasswordError.obvious{
-    print("the passwordd to too obvious")
 }catch{
-    print("There was an error!!")
+    switch error{
+    case PasswordError.short:
+        print("The password is too short please use a longer password")
+    case PasswordError.obvious:
+        print("the password is too obvious")
+    default:
+        print("There was an error!!")
+    }
+    
 }

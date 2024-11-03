@@ -44,7 +44,7 @@ print(c1.calculateArea())
 protocol Container{
     associatedtype itemType
     var items: [itemType] { get set }
-    mutating func addItem(_ item: itemType)
+//    mutating func addItem(_ item: itemType)
     
 //    mutating func removeItem(_ item: itemType) -> Bool
 }
@@ -53,10 +53,33 @@ extension Container{
     mutating func addItem(_ item: itemType){
         items.append(item)
     }
+    
 
 }
 
-struct NameDatabase: Container {
+struct IntContainer: Container {
+    typealias itemType = Int
+    var items = [itemType]()
+}
+
+var intContainer = IntContainer()
+
+intContainer.addItem(23)
+intContainer.addItem(123)
+intContainer.addItem(223)
+
+
+print(intContainer.items)
+
+struct StringContainer: Container {
     typealias itemType = String
     var items = [itemType]()
 }
+
+var stringContainer = StringContainer()
+
+stringContainer.addItem("mango")
+stringContainer.addItem("apples")
+stringContainer.addItem("orange")
+
+print(stringContainer.items)
