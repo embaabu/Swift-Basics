@@ -38,29 +38,43 @@ class Employee{
     
 }
 
-var emp: Employee? = Employee(rollNo: 123)
-emp?.giveRollNo?()
-emp = nil
+//var emp: Employee? = Employee(rollNo: 123)
+//emp?.giveRollNo?()
+//emp = nil
 
 //Example of Capture
 
-class HomeController {
-    var apiManager = HomeApiManager()
-    var someVariable = ""
-    func someActionHappened() {
-        apiManager.makeApiCall(completion: { [weak self] in
-            print(self?.someVariable ?? "")
-        })
+
+
+class AreaTest{
+    var height: Int
+    var width: Int
+    var area : (()-> Void)?
+    init(height: Int = 10, width: Int = 20) {
+        self.height = height
+        self.width = width
+    
+        area = { [weak self] in
+            guard let self = self else{return}
+            
+            let calculatedArea = self.height * self.width
+            
+            print("the area of the squre is \(calculatedArea)")
+        }
+    
+
+    }
+    deinit{
+        print("AreaTest instance is deinitialized")
+        
     }
 }
 
-class HomeApiManager {
-    var completion: (() -> Void)?
-    func makeApiCall(completion: (() -> Void)?) {
-        self.completion = completion
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0, execute: {
-            completion?()
-        })
-    }
-}
+var areaTest : AreaTest? = AreaTest(height: 22, width: 12)
+
+areaTest?.area?()
+areaTest = nil
+
+areaTest?.area?()
+
 
