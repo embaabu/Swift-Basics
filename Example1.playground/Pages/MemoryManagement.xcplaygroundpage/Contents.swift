@@ -24,11 +24,15 @@ var greeting = "Hello, playground"
  */
 class Person{
     var name: String
+    weak var family : Family?
     
     
     init(name: String) {
         self.name = name
         
+    }
+    deinit{
+        print("person deinit is called")
     }
 }
 
@@ -40,6 +44,9 @@ class Family{
         self.father1 = father1
         self.mother1 = mother1
     }
+    deinit{
+        print("fammily deinit is called")
+    }
 }
 
 var father1 = Person(name: "Paul")
@@ -48,35 +55,41 @@ var mother1 = Person(name: "Mary")
 // Strong references prevent the object from being deallocated.
 // Therefore, the variables family.father and family.mother will remain valid until the object is deallocated.
 
-var family = Family(father1: father1, mother1: mother1)
+var family: Family? = Family(father1: father1, mother1: mother1)
 
-if let fatherName = family.father1?.name{
+father1.family = family
+mother1.family = family
+
+if let fatherName = family?.father1?.name{
     print("My fathers name is \(fatherName)")
 }else{
     print("I dont know my fathers name")
 }
-if let motherName = family.mother1?.name{
+if let motherName = family?.mother1?.name{
     print("My mothers name is \(motherName)")
 }else{
     print("I dont know my mothers name")
 }
 
+family = nil
+
 //trying to delete the object to see if we can dealocate the memory
 family = Family(father1: nil, mother1: nil)
 
-print("Father's name after changing family: \(father1.name)")
-print("Mother's name after changing family: \(mother1.name)")
+//print("Father's name after changing family: \(father1.name)")
+//print("Mother's name after changing family: \(mother1.name)")
+print("My fathers name is still \(family?.father1?.name)")
 
-//if let fatherName = family.father?.name{
-//    print("My fathers name is still \(fatherName)")
-//}else{
-//    print("I dont know my fathers name")
-//}
-//if let motherName = family.mother?.name{
-//    print("My mothers name is still  \(motherName)")
-//}else{
-//    print("I dont know my mothers name")
-//}
+if let fatherName = family?.father1?.name{
+    print("My fathers name is still \(fatherName)")
+}else{
+    print("I dont know my fathers name")
+}
+if let motherName = family?.mother1?.name{
+    print("My mothers name is still  \(motherName)")
+}else{
+    print("I dont know my mothers name")
+}
 
 
 //Weak Refrence

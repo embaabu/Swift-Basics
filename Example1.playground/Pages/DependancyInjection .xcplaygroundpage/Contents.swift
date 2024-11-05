@@ -85,34 +85,34 @@ let data = dataViewControler.fetchData()
 //Property injection
 
 protocol NetworkingService{
-    func fetchData(completion: @escaping ([ String ]?) -> Void)
+    func fetchData(completion:@Sendable  @escaping ([ String ]?) -> Void)
 }
 
 class ApiNetworkingService : NetworkingService{
-    func fetchData(completion: @escaping ([ String ]?)-> Void ) {
+    func fetchData(completion: @Sendable @escaping ([ String ]?)-> Void ) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5){
             completion(["Result1", "Result2", "Result3"])
         }
     }
 }
 
-//class DataManager{
-//    var networkingService: NetworkingService? //property injection
-//    
-//    func fetchAndProcessData(){
-//        
-//        networkingService?.fetchData{ [weak self] data in
-//            print("Fetched data: ", data ?? "No data")
-//            
-//        }
-//    }
-//}
-//
-//let apiNetworkingService = ApiNetworkingService()
-//let dataManager = DataManager()
-//
-//dataManager.networkingService = apiNetworkingService
-//dataManager.fetchAndProcessData()
+class DataManager{
+    var networkingService: NetworkingService? //property injection
+    
+    func fetchAndProcessData(){
+        
+        networkingService?.fetchData{ [weak self] data in
+            print("Fetched data: ", data ?? "No data")
+            
+        }
+    }
+}
+
+let apiNetworkingService = ApiNetworkingService()
+let dataManager = DataManager()
+
+dataManager.networkingService = apiNetworkingService
+dataManager.fetchAndProcessData()
 
 
 //EXAMPLE 3 -- METHOD INJECTION
