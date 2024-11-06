@@ -78,7 +78,7 @@ family = Family(father1: nil, mother1: nil)
 
 //print("Father's name after changing family: \(father1.name)")
 //print("Mother's name after changing family: \(mother1.name)")
-print("My fathers name is still \(family?.father1?.name)")
+print("My fathers name is still \(String(describing: family?.father1?.name))")
 
 if let fatherName = family?.father1?.name{
     print("My fathers name is still \(fatherName)")

@@ -27,8 +27,10 @@ let t1 = Thread{
 
 t1.start()
 t1.isMainThread
+t1.cancel()
 
 //GCD(GRAND CENTRAL DISPATCH) - FIFO - first in first out- this is an API which is build on top of thread which is given by apple to simplify multithreading -- GCD allows devs to write concurent/ asynchronus code without having to del with complexity of the thread management
+//DispatchQueue is used for GDC
 /*
  3Types of queues
  1. Main Queues- any realated UI should be done on Main queue
